@@ -20,3 +20,7 @@ ALTER TABLE animals MODIFY id int PRIMARY KEY AUTO_INCREMENT;
 ALTER TABLE animals DROP COLUMN species;
 ALTER TABLE animals ADD species_id int, ADD CONSTRAINT FOREIGN KEY(species_id) REFERENCES species(id);
 ALTER TABLE animals ADD owner_id int, ADD FOREIGN KEY(owner_id) REFERENCES owners(id);
+
+CREATE TABLE vets (id int PRIMARY KEY AUTO_INCREMENT, name varchar(255), age int, date_of_graduation date);
+CREATE TABLE specializations (species_id int not null, vets_id int not null, FOREIGN KEY (species_id) REFERENCES species(id), FOREIGN KEY (vets_id) REFERENCES vets(id));
+ CREATE TABLE visits (animal_id int not null, vets_id int not null, visit_date date, FOREIGN KEY(animal_id) REFERENCES animals(id), FOREIGN KEY(vets_id) REFERENCES vets(id));
