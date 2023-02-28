@@ -24,3 +24,10 @@ ALTER TABLE animals ADD owner_id int, ADD FOREIGN KEY(owner_id) REFERENCES owner
 CREATE TABLE vets (id int PRIMARY KEY AUTO_INCREMENT, name varchar(255), age int, date_of_graduation date);
 CREATE TABLE specializations (species_id int not null, vets_id int not null, FOREIGN KEY (species_id) REFERENCES species(id), FOREIGN KEY (vets_id) REFERENCES vets(id));
  CREATE TABLE visits (animal_id int not null, vets_id int not null, visit_date date, FOREIGN KEY(animal_id) REFERENCES animals(id), FOREIGN KEY(vets_id) REFERENCES vets(id));
+
+ ALTER TABLE owners ADD COLUMN email VARCHAR(120);
+
+ CREATE INDEX animal_id_asc ON animals(id ASC);
+ CREATE INDEX vet_index ON visits(vets_id ASC);
+ CREATE INDEX visits_index on visists(id);
+ CREATE INDEX email_index ON owners(email ASC);
